@@ -1,12 +1,8 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import abs from "../images/aboutus.jpg"
-import { FaLinkedin } from "react-icons/fa";
-import { FaSquareInstagram } from "react-icons/fa6";
-import { ImFacebook2 } from "react-icons/im";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import abs from "../images/ab2.jpg"
+import { IoLogoInstagram } from "react-icons/io";
+import { LiaFacebookSquare } from "react-icons/lia";
 const OutsideaboutUs = () => {
     return (
-        <>
             <div className="p-5" style={{ textAlign: "left", backgroundColor: "rgba(154, 53, 204, 0.09)", color: "rgb(38, 52, 180)" }}>
                 <h4>About Us</h4>
                 <hr />
@@ -22,7 +18,7 @@ const OutsideaboutUs = () => {
                             </p>
                         </div>
                         <div className="col-md-4">
-                            <img src={abs} alt="aboutus" className="image-fluid" style={{ height: "250px", width: "250px" }} />
+                            <img src={abs} alt="aboutus" className="image-fluid" style={{ height: "250px" }} />
                         </div>
 
                     </div>
@@ -49,14 +45,11 @@ const OutsideaboutUs = () => {
                 <div className="fs-5 mt-5 fw-bold d-flex flex-wrap align-items-center justify-content-start">
                     Follow us on :
                     <div>
-                        <Link className="fs-2 mx-2"> <span><ImFacebook2/></span> </Link>
-                        <Link className="fs-2 mx-2"> <span><FaSquareInstagram/></span> </Link>
-                        <Link className="fs-2 mx-2"> <span><FaLinkedin/></span> </Link>
-                        <Link className="fs-2 mx-2"> <span><FaSquareXTwitter/></span> </Link>
+                    <IoLogoInstagram style={{cursor:"pointer"}} className='fs-1' onClick={()=>{window.open("https://www.instagram.com/stint.world?utm_source=qr&igsh=bzJyY21hb3Y4bmhl")}}></IoLogoInstagram>
+                    <LiaFacebookSquare style={{cursor:"pointer"}} className='fs-1' onClick={()=>{window.open("https://www.facebook.com/share/uL4KwzDGMnHowgcD/?mibextid=qi2Omg")}}></LiaFacebookSquare>
                     </div>
                 </div>
             </div>
-        </>
     );
 }
 
