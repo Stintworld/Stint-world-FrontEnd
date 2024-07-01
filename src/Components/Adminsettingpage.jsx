@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Form,  Modal } from 'react-bootstrap';
 import Adminlist from './Adminlist';
 import Loader from './Loader';
 
@@ -23,47 +23,42 @@ const Adminsettingpage = ({logout}) => {
 
   const handleCloseChangePassword = () => setShowChangePassword(false);
   const handleCloseAddAdmin = () => setShowAddAdmin(false);
+ 
 
   const handleSubmitChangePassword = async (e) => {
     e.preventDefault();
-
+    
     if (newPassword === confirmPassword) {
-      const resetPass = axios.put("https://www.stint.world/admins/resetpwd", null, { params: { mail: email, newPassword: newPassword, confirmPwd: confirmPassword } })
-        .then((response) => { return response.data })
-        .then((data) => {
-          if (data.statusCode === 200) {
-            alert(data.data)
-            alert("You will be logged off, Please SignIn again")
-            logout()
-            
-          }
-        })
-        .catch((err) => {
-          if (err.message === "Request failed with status code 500") {
-            alert(`${err.response.data.status} ${err.response.data.error}`)
-          }
-          else if (err.message === "Network Error") {
-            alert(`${err.message} : Request failed`)
-          }
-          else if (err.message === "Request failed with status code 500") {
-            alert(`${err.response.data.status} ${err.response.data.error}`)
-          }
-          else if (err.message === "Request failed with status code 406") {
-            alert(`${err.response.data.status} ${err.response.data.error}`)
-          }
-          else if (err.message === "Request failed with status code 404" || err.code === "ERR_BAD_REQUEST") {
-            alert(`${err.response.data.message}`)
-          }
-          else {
-            alert(`Something went wrong! ${err}`)
-          }
-        })
+          const resetPass = axios.put("https://www.stint.world/admins/resetpwd", null, { params: { mail: email, newPassword: newPassword, confirmPwd: confirmPassword } })
+          .then((response) => { return response.data })
+          .then((data) => {
+            if (data.statusCode === 200) {
+              alert(data.data)
+              alert("You will be logged off, Please SignIn again")
+              logout()
+            }
+          })
+          .catch((err) => {
+            if (err.message === "Request failed with status code 500") {
+              alert(`${err.response.data.status} ${err.response.data.error}`)
+            }
+            else if (err.message === "Network Error") {
+              alert(`${err.message} : Request failed`)
+            }
+            else if (err.message === "Request failed with status code 406") {
+              alert(`${err.response.data.status} ${err.response.data.error}`)
+            }
+            else if (err.message === "Request failed with status code 404" || err.code === "ERR_BAD_REQUEST") {
+              alert(`${err.response.data.message}`)
+            }
+            else {
+              alert(`Something went wrong! ${err}`)
+            }
+          })
     }
     else {
       alert("Password mismatched")
     }
-
-
 
     setEmail('');
     setNewPassword('');
@@ -101,9 +96,6 @@ const Adminsettingpage = ({logout}) => {
           }
           else if (err.message === "Network Error") {
             alert(`${err.message} : Request failed`)
-          }
-          else if (err.message === "Request failed with status code 500") {
-            alert(`${err.response.data.status} ${err.response.data.error}`)
           }
           else if (err.message === "Request failed with status code 406") {
             alert(`${err.response.data.rootCause}`)

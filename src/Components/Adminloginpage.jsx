@@ -11,7 +11,7 @@ const Adminloginpage = ({ login }) => {
     const [password, setPassword] = useState('');
     const [errMessageState, setErrMessageState] = useState(false)
     const [errMessage, setErrMessage] = useState()
-    const viewpwd= useRef(false);
+    const viewpwd = useRef(false);
 
 
     // Reseting the err message state to false to hide err message block
@@ -23,12 +23,7 @@ const Adminloginpage = ({ login }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // axios.get("https://www.stint.world/admins/login",
-        axios.post("http://localhost:8080/admins/login", {
-            emailId:email,
-            password:password
-        })
+        axios.post("https://www.stint.world/admins/login", { emailId: email, password: password })
             .then((response) => { return response.data })
             .then((data) => {
                 if (data.statusCode === 200) {
@@ -57,70 +52,66 @@ const Adminloginpage = ({ login }) => {
                     setErrMessage(`Something went wrong! ${err}`)
                 }
             })
-
         setEmail('');
         setPassword('');
     };
 
-    const handleViewPassword =()=>{
-        const pedIn= document.getElementById('password');
-         if(viewpwd.current.checked)
-            {
-                pedIn.type="text"
-            }
-            else
-            {
-                pedIn.type="password"
-            }
+    const handleViewPassword = () => {
+        const pedIn = document.getElementById('password');
+        if (viewpwd.current.checked) {
+            pedIn.type = "text"
+        }
+        else {
+            pedIn.type = "password"
+        }
     }
 
 
+
     return (
-            <Container  className="h-100 d-flex justify-content-center align-items-center py-5 ">
-                <Row className="w-100 my-5">
-                    <Col xs={12} md={6} className="d-flex justify-content-center">
-                        <img src={adlog1} alt="AdminLogin" className='image-fluid' style={{ width: "400px", height: "400px" }} />
-                    </Col>
-                    <Col xs={12} md={6} className="d-flex flex-column justify-content-center align-items-center">
-                        <h1 className='mb-5'>Admin Login</h1>
-                        <>
+        <Container className="h-100 d-flex justify-content-center align-items-center py-5 ">
+            <Row className="w-100 my-5">
+                <Col xs={12} md={6} className="d-flex justify-content-center">
+                    <img src={adlog1} alt="AdminLogin" className='image-fluid' style={{ width: "400px", height: "400px" }} />
+                </Col>
+                <Col xs={12} md={6} className="d-flex flex-column justify-content-center align-items-center">
+                    <h1 className='mb-5'>Admin Login</h1>
+                    <>
                         {errMessageState && <div className="row px-5 py-1 mx-5 col-10 border border-1 rounded-1" style={{ color: "red", backgroundColor: "#ffb2b2" }}>
                             {errMessage}
                         </div>}
-                        </>
-                        <form onSubmit={handleSubmit} className='col-7' style={{ textAlign: "left" }}>
-                            <Form.Group className="mb-3">
-                                <Form.Label htmlFor="email">Email Address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    id="email"
-                                    placeholder="Enter Email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label htmlFor="password">Password</Form.Label>
-                               <Form.Control
-                                    type="password"
-                                    id="password"
-                                    placeholder="Enter Password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                />
-                                <label htmlFor="viewpaswword" className='d-flex justify-content-start align-items-center' style={{fontSize:"smaller"}}> <input type="checkbox" onClick={handleViewPassword}id='viewpaswword' ref={viewpwd} />View Password</label>
-                            </Form.Group>
-                           
-
-                            <button className="btn  btn-sm px-5 py-2" type="submit" style={{ backgroundImage: "linear-gradient(90deg, #881e91, #b4435d, #e46f22)", color: "white", fontWeight: "bold" }}>
-                                Login
-                            </button>
-                        </form>
-                    </Col>
-                </Row>
-            </Container>
+                    </>
+                    <form onSubmit={handleSubmit} className='col-7' style={{ textAlign: "left" }}>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="email">Email Address</Form.Label>
+                            <Form.Control
+                                type="email"
+                                id="email"
+                                placeholder="Enter Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="password">Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                id="password"
+                                placeholder="Enter Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            <label htmlFor="viewpaswword" className='d-flex justify-content-start align-items-center' style={{ fontSize: "smaller" }}> <input type="checkbox" onClick={handleViewPassword} id='viewpaswword' ref={viewpwd} />View Password</label>
+                        </Form.Group>
+                        <button className="btn  btn-sm px-5 py-2" type="submit" style={{ backgroundImage: "linear-gradient(90deg, #881e91, #b4435d, #e46f22)", color: "white", fontWeight: "bold" }}>
+                            Login
+                        </button>
+                    </form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
