@@ -1,0 +1,8 @@
+.maindiv
+{
+    background-image: url("../images/logout.png.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-position: -300px -140px;
+}

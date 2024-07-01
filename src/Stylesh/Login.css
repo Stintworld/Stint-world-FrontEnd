@@ -1,0 +1,24 @@
+.signinbutton
+{
+    background-image: linear-gradient(90deg, #881e91, #b4435d, #e46f22 );
+    /* background-image: linear-gradient(180deg, red, yellow); */
+    color: white !important;
+    font-weight: bold;
+
+}
+.signinbutton:focus
+{
+    box-shadow: none;
+}
+
+
+.textdiscription
+{
+    background: linear-gradient(#881e91, #b4435d, #e46f22);
+}
+
+.dispcolor
+{
+    color: white !important; 
+
+}

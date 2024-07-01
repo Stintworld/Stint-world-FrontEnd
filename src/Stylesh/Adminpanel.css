@@ -1,0 +1,73 @@
+/* .sidebar
+{
+    background-color: red;
+    height: 100vh;
+    text-align: center;
+    left: 0px;
+}
+
+
+
+.notificationbar
+{
+    height: fit-content !important;
+    padding: 30px 10px !important;
+    background-color: #450e5d;
+    background-color: #450e5d;
+}
+
+#adminlogo
+{
+    width: 150px;
+    height: 60px;
+    margin: 30px 10px;
+}
+.navlinks
+{
+    text-align: left;
+    padding-left: 10%;
+}
+.navlinks a
+{
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid #bb61eb;
+    padding: 15px 0px;
+    width: 90%;
+}
+
+.noticelinks a
+{
+    text-decoration: none;
+    color: white;
+
+}
+#icons
+{
+    font-size: larger;
+    margin-right: 5px;
+}
+
+ */
+ .sidebarlinksbg
+ {
+    background-color: #450e5d !important;
+    color:"white" !important;
+    border-bottom: "1px solid #eed8fc" !important;
+ }
+ .sidebarlinks
+ {
+    /* background-color: #450e5d !important; */
+    color:"white" !important;
+ }
+
+ .list-group a:hover
+ {
+    background-color: blue;
+    color: white;
+ }
+
+/* .list-group a
+{
+    border-bottom: "1px solid #eed8fc" !important;
+} */

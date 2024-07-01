@@ -1,0 +1,28 @@
+.empregtext
+{
+    text-align: left !important;
+}
+/* .forboxshadow
+{
+    box-shadow: 0px 0px 10px #881e91;
+} */
+.verifyotpsection
+{
+    display: none;
+}
+.hideshowinputfield
+{
+    display: none;
+}
+
+.empupdateprofileimage {
+    width:350px;
+    height: 350px;
+  }
+
+@media (max-width: 768px) { 
+    .empupdateprofileimage {
+      width: 250px;
+      height: 250px;
+    }
+  }

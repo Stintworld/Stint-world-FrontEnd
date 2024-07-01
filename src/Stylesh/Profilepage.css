@@ -1,0 +1,10 @@
+/* d-flex justify-content-space-between align-items-center */
+
+.ddrowstyle
+{
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    text-align: left !important;
+
+}

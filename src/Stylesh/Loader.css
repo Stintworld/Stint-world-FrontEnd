@@ -1,0 +1,73 @@
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%; /* Adjust height as needed */
+    background-color: rgba(0, 0, 0, 0.3); /* Optional background color */
+    position: absolute; /* Position the loader on top of your content */
+    top: 0;
+    left: 0;
+    z-index: 999; /* Ensure loader is on top of other elements */
+  }
+  
+  .loader {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 8px solid #f3f3f3; /* Loader border color */
+    border-top-color: #3498db; /* Animation color */
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .inner {
+    position: absolute;
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+  }
+  
+  .inner.one {
+    left: 0;
+    top: 0;
+    animation: spin2 1s linear infinite;
+    -webkit-animation: spin2 1s linear infinite;
+  }
+  
+  @keyframes spin2 {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .inner.two {
+    right: 0;
+    top: 0;
+    animation: spin3 1s linear infinite;
+    -webkit-animation: spin3 1s linear infinite;
+  }
+  
+  @keyframes spin3 {
+    0% { transform: rotate(0deg); }
+    75% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .inner.three {
+    right: 0;
+    bottom: 0;
+    animation: spin4 1s linear infinite;
+    -webkit-animation: spin4 1s linear infinite;
+  }
+  
+  @keyframes spin4 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

@@ -1,0 +1,24 @@
+#linkshover:hover
+{
+    background-color: #eed8fc !important;
+    color: #450e5d !important;
+    border-radius: 10%;
+}
+#servdrop a
+{
+    color:white !important;
+    right: 0px !important;
+}
+.dropdown-toggle::after
+{
+    content-visibility: hidden !important;
+    content: unset;
+    /* color:#6f1f95 !important; */
+}
+.dropdown-menu[data-bs-popper]
+{
+    right:0px !important;
+    left:unset !important;
+}
+
+/* NavDropdown */

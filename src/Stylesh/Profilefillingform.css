@@ -1,0 +1,22 @@
+#submitprofile:hover
+{
+    background-color: #792b9e !important;
+    box-shadow: none  !important;
+}
+
+#submitprofile:focus
+{
+
+    box-shadow: 5px 5px 5px 2px #ce8df3 !important;
+}
+
+.compulsary::after
+{
+    content: "*" !important;
+    color: red;
+}
+.compulsaryinfo::before
+{
+    content: "*" !important;
+    color: red;
+}

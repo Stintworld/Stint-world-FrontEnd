@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+    .resumupdateinput {
+      width: 80%;
+    }
+    #resume
+    {
+        margin-top: 20px;
+    }
+  }
