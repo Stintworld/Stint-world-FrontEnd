@@ -4,12 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FaHeart } from "react-icons/fa";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-
+// import { CiLinkedin } from "react-icons/ci";
+import { IoLogoInstagram } from "react-icons/io";
+import { LiaFacebookSquare } from "react-icons/lia";
 
 
 const Footer = () => {
     return ( 
-    <>
      <footer className="footer text-white mt-5" style={{backgroundImage: "linear-gradient(0deg, #450e5d 20%, #9932cc)", bottom:"0"}}>
       <Container>
         <Row className="pt-5 justify-content-between align-items-start d-flex flex-wrap" style={{justifyContent: "space-between", textAlign:"left"}}>
@@ -59,6 +60,11 @@ const Footer = () => {
                 Subscribe
               </button>
             </form>
+            <div className='mt-3  d-flex flex-wrap justify-content-center align-items-center'>
+              {/* <CiLinkedin style={{cursor:"pointer"}} className='fs-1' onClick={()=>{window.open("https://linkedin.com")}}></CiLinkedin> */}
+              <IoLogoInstagram style={{cursor:"pointer"}} className='fs-1' onClick={()=>{window.open("https://www.instagram.com/stint.world?utm_source=qr&igsh=bzJyY21hb3Y4bmhl")}}></IoLogoInstagram>
+              <LiaFacebookSquare style={{cursor:"pointer"}} className='fs-1' onClick={()=>{window.open("https://www.facebook.com/share/uL4KwzDGMnHowgcD/?mibextid=qi2Omg")}}></LiaFacebookSquare>
+            </div>
           </Col>
           <Col xs={12} className="text-center mt-4">
             <p>
@@ -68,7 +74,6 @@ const Footer = () => {
         </Row>
       </Container>
     </footer>
-    </> 
 
     );
 }
