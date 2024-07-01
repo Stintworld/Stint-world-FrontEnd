@@ -35,13 +35,11 @@ const Singlelogin = ({login}) => {
         let path='';
         if(AccountType==="jobseeker")
             {
-                // path="https://www.stint.world/applicants/login"
-                path="http://localhost:8080/applicants/login"
+                path="https://www.stint.world/applicants/login"
             }
             else
             {
-                // path="https://www.stint.world/employer/login"
-                path="http://localhost:8080/employer/login"
+                path="https://www.stint.world/employer/login"
             }
         const user = axios.post(path,{emailId:Email, password:Password})
         .then((response)=>{

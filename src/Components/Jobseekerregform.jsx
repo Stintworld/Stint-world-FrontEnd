@@ -48,7 +48,6 @@ const Jobseekerregform = () => {
                 applicantPhNo: phone,
                 applicantPassword: password,
             }
-            // const newAppli= axios.post("https://stintworld-env-1.eba-mwu5fvmb.eu-north-1.elasticbeanstalk.com/applicants/signup", newApplicant)
             const newAppli = axios.post("https://www.stint.world/applicants/signup", newApplicant)
                 // const newAppli= axios.post("http://localhost:8080/applicants/signup", newApplicant)
                 .then((response) => {
@@ -116,9 +115,11 @@ const Jobseekerregform = () => {
         const sendOtp = axios.post(`https://www.stint.world/otps/sendotpmail`, null, { params: { emailId: email } })
             // const sendOtp = axios.post(`http://localhost:8080/otps/sendotpmail`, null, { params: { emailId: email } })
             .then((response) => {
+                console.log(response);
                 return response.data
             })
             .then((data) => {
+                console.log(data);
                 if (data.statusCode === 200) {
                     document.getElementsByClassName("verifyotpsection")[0].style.display = "block";
                     alert("OTP sent to entired Email ID");
@@ -129,13 +130,13 @@ const Jobseekerregform = () => {
                 setErrMessageState(true)
 
                 setErrMessage("Error while sending the OTP")
-                if (err.message === "equest failed with status code 500") {
+                if (err.message === "Request failed with status code 500") {
                     setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
                 }
                 else if (err.message === "Network Error") {
                     setErrMessage(`${err.message} : Request failed`)
                 }
-                else if (err.message === "equest failed with status code 500") {
+                else if (err.message === "Request failed with status code 500") {
                     setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
                 }
                 else if (err.message === "Request failed with status code 406") {
