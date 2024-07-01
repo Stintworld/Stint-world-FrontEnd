@@ -11,7 +11,7 @@ const Adminloginpage = ({ login }) => {
     const [password, setPassword] = useState('');
     const [errMessageState, setErrMessageState] = useState(false)
     const [errMessage, setErrMessage] = useState()
-    const viewpwd= useRef(false)
+    const viewpwd= useRef(false);
 
 
     // Reseting the err message state to false to hide err message block
