@@ -4,7 +4,7 @@ import "../Stylesh/Logout.css"
 
 const Logout = ({logout}) => {
  const history = new useHistory();
-console.log(logout);
+
     
     return ( 
         <Container fluid className="p-5 vh-100 d-flex justify-content-center flex-column align-items-end maindiv">

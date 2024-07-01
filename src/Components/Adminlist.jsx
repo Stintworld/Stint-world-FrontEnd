@@ -8,8 +8,6 @@ const Adminlist = ({ adminList }) => {
   const mainAdminID= localStorage.getItem("adminId")
 
   const handleDeaactivateAdmin = (adminId) => {
-    console.log("Deleting the admin with ID: ", adminId);
-    // admins/deletebyadminhead/{adminHeadId}/{adminId}"
     const deletedAdmin = axios.put(`https://www.stint.world/admins/deletebyadminhead/${mainAdminID}/${adminId}`)
     .then((response)=>{
       return response.data

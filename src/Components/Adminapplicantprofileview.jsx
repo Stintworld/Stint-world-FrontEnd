@@ -75,7 +75,6 @@ const Adminapplicantprofileview = ({logout}) => {
                 const response = await fetch(`https://www.stint.world/applicants/findImage/${applicantId}`, requestOptions);
                 const imageBlob = await response.blob()
                 const imageURL = URL.createObjectURL(imageBlob)
-                console.log(imageURL);
                 setAppImages(imageURL)
             }
             catch (err) {

@@ -122,7 +122,7 @@ const Admininterviewpage = () => {
               <tr key={interview.jobApplicationId}>
                 <td>{interview.jobApplicationId}</td>
                 <td><Link to={`/adminviewjd/${interview.jobSerial}`} style={{ textDecoration: "none", color: "black" }}>{interview.jobSerial}</Link></td>
-                <td><Link to={`/empapplicatprofileview${interview.ApplicantID}`} style={{ textDecoration: "none", color: "black" }}>{interview.ApplicantID}</Link></td>
+                <td><Link to={`/adminapplicatprofileview${interview.applicantId}`} style={{ textDecoration: "none", color: "black" }}>{interview.applicantId}</Link></td>
                 <td>{interview.jobApplicationStatus}</td>
                 <td>{interview.jobTitle}</td>
                 <td>{interview.company}</td>

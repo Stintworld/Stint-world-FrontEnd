@@ -28,7 +28,6 @@ const Adminjobseekerspage = () => {
       const jobsdata = await axios.get("https://www.stint.world/applicants/getallapplicants")
         .then((response) => { return response.data })
         .then((data) => {
-          console.log(data);
           if (data.statusCode === 200) {
             const x = data.data.reverse() // latest jobs will display at first
             setJobSeekers(x)
@@ -147,7 +146,6 @@ const Adminjobseekerspage = () => {
         return response.data
       })
       .then((data) => {
-        console.log(data);
         if (data.statusCode === 201) {
           alert(data.data)
           setShowResumeModal(false)
@@ -216,16 +214,13 @@ const Adminjobseekerspage = () => {
 
             {paginatedJobSeekers.map((jobSeeker) => (
               <tr key={jobSeeker.applicantId}>
-                <td> <Link to={`/empapplicatprofileview${jobSeeker.applicantId}`} style={{ textDecoration: "none", color: "black", target: "_blank" }}>{jobSeeker.applicantId}</Link> </td>
+                <td> <Link to={`/adminapplicatprofileview${jobSeeker.applicantId}`} style={{ textDecoration: "none", color: "black", target: "_blank" }}>{jobSeeker.applicantId}</Link> </td>
                 <td>{jobSeeker.applicantName}</td>
                 <td>{jobSeeker.applicantEmail}</td>
                 <td>{jobSeeker.applicantPhNo}</td>
                 <td>{jobSeeker.status}</td>
-                <td>{jobSeeker.applications[0].jobLevel}</td>
-                {/* {
-                  console.log(jobSeeker.applications[0].jobLevel)
-                } */}
-                <td>{jobSeeker.applications[0].applicantLocation}</td>
+                <td>{jobSeeker.jobLevel}</td>
+                <td>{jobSeeker.applicantLocation}</td>
                 <td>
                   {/* <button variant="primary" size="sm" onClick={() => handleUploadResume(jobSeeker.id)}> */}
                   <button className="btn btn-primary btn-sm mx-1" onClick={() => handleResumeClick(jobSeeker.applicantId)}>

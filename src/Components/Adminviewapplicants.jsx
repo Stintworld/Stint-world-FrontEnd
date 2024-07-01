@@ -16,7 +16,6 @@ useEffect(()=>{
     return response.data
   })
   .then((data)=>{
-    console.log(data);
     if(data.statusCode === 200)
       {
         setJob_Applicants_Details(data.data)

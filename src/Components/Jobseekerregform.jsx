@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Jobseekerregform = () => {
 
     const history = new useHistory()
-    const viewpwd= useRef(false)
+    const viewpwd = useRef(false)
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -37,66 +37,64 @@ const Jobseekerregform = () => {
     // call the new Applicant registration API
     const handleSubmit = (event) => {
         event.preventDefault();
-        const ack= document.getElementById('password');
-        if(ack)
-            {
-                // Implement form submission logic here (e.g., send data to server)
-        if (password === Confirmpassword) {
-            const newApplicant = {
-                applicantName: name,
-                applicantEmail: email,
-                applicantPhNo: phone,
-                applicantPassword: password,
+        // const ack = document.getElementById('checkboxtcpp');
+        const ack= viewpwd.current.checked;
+        if (ack) {
+            // Implement form submission logic here (e.g., send data to server)
+            if (password === Confirmpassword) {
+                const newApplicant = {
+                    applicantName: name,
+                    applicantEmail: email,
+                    applicantPhNo: phone,
+                    applicantPassword: password,
+                }
+                const newAppli = axios.post("https://www.stint.world/applicants/signup", newApplicant)
+                    // const newAppli= axios.post("http://localhost:8080/applicants/signup", newApplicant)
+                    .then((response) => {
+                        return response.data
+                    })
+                    .then((data) => {
+                        if (data.statusCode === 201) {
+                            alert(data.message)
+                            history.push("/login")
+                        }
+                    })
+                    .catch((err) => {
+                        document.getElementById("email").disabled = false;
+                        document.getElementsByClassName("hideshowinputfield")[0].style.display = "none";
+                        document.getElementById("sendotpbtn").disabled = false;
+                        document.getElementById("sendotpbtn").innerHTML = "Send OTP";
+                        setErrMessageState(true)
+                        if (err.message === "equest failed with status code 500") {
+                            setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
+                        }
+                        else if (err.message === "Network Error") {
+                            setErrMessage(`${err.message} : Request failed`)
+                        }
+                        else if (err.message === "equest failed with status code 500") {
+                            setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
+                        }
+                        else if (err.message === "Request failed with status code 406") {
+                            setErrMessage("We already have an account associated with this email")
+                            // setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
+                        }
+                        else if (err.message === "Request failed with status code 404" || err.code === "ERR_BAD_REQUEST") {
+                            setErrMessage(`${err.response.data.message}`)
+                        }
+                        else {
+                            setErrMessage("Somthing went wrong please check")
+                        }
+                    })
             }
-            const newAppli = axios.post("https://www.stint.world/applicants/signup", newApplicant)
-                // const newAppli= axios.post("http://localhost:8080/applicants/signup", newApplicant)
-                .then((response) => {
-                    return response.data
-                })
-                .then((data) => {
-                    if (data.statusCode === 201) {
-                        alert(data.message)
-                        history.push("/login")
-                    }
-                })
-                .catch((err) => {
-                    document.getElementById("email").disabled = false;
-                    document.getElementsByClassName("hideshowinputfield")[0].style.display = "none";
-                    document.getElementById("sendotpbtn").disabled = false;
-                    document.getElementById("sendotpbtn").innerHTML = "Send OTP";
-                    setErrMessageState(true)
-                    if (err.message === "equest failed with status code 500") {
-                        setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                    }
-                    else if (err.message === "Network Error") {
-                        setErrMessage(`${err.message} : Request failed`)
-                    }
-                    else if (err.message === "equest failed with status code 500") {
-                        setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                    }
-                    else if (err.message === "Request failed with status code 406") {
-                        setErrMessage("We already have an account associated with this email")
-                        // setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                    }
-                    else if (err.message === "Request failed with status code 404" || err.code === "ERR_BAD_REQUEST") {
-                        setErrMessage(`${err.response.data.message}`)
-                    }
-                    else {
-                        setErrMessage("Somthing went wrong please check")
-                    }
-                })
+            else {
+                setErrMessageState(true)
+                setErrMessage("Pasowrd miss Match")
+            }
         }
         else {
             setErrMessageState(true)
-            setErrMessage("Pasowrd miss Match")
+            setErrMessage("Read and agree for the T&C, privacy & policies")
         }
-            }
-            else
-            {
-                setErrMessageState(true)
-                setErrMessage("Read and agree for the T&C, privacy & policies")
-            }
-        
 
         // Clear form fields after submission
         setName('');
@@ -115,11 +113,9 @@ const Jobseekerregform = () => {
         const sendOtp = axios.post(`https://www.stint.world/otps/sendotpmail`, null, { params: { emailId: email } })
             // const sendOtp = axios.post(`http://localhost:8080/otps/sendotpmail`, null, { params: { emailId: email } })
             .then((response) => {
-                console.log(response);
                 return response.data
             })
             .then((data) => {
-                console.log(data);
                 if (data.statusCode === 200) {
                     document.getElementsByClassName("verifyotpsection")[0].style.display = "block";
                     alert("OTP sent to entired Email ID");
@@ -289,11 +285,11 @@ const Jobseekerregform = () => {
                                             maxLength={16}
                                         />
                                     </div>
-                                    <label htmlFor="viewpaswword" className='d-flex flex-wrap justify-content-start align-items-center' style={{fontSize:"smaller"}}> 
-                                        <input type="checkbox" id='viewpaswword' ref={viewpwd} required />  I confirm I have red and agree to the &nbsp; 
-                                        <Link to="/termscondition" style={{fontSize:"smaller"}}> T&C </Link>,&nbsp; 
-                                        <Link to="/privacypolicy" style={{fontSize:"smaller"}}> Privacy & polices </Link> 
-                                        </label>
+                                    <label htmlFor="checkboxtcpp" className='d-flex flex-wrap justify-content-start align-items-center' style={{ fontSize: "smaller" }}>
+                                        <input type="checkbox" id='checkboxtcpp' ref={viewpwd} required />  I confirm I have read and agree to the &nbsp;
+                                        <Link to="/termscondition" style={{ fontSize: "smaller" }}> T&C </Link>,&nbsp;
+                                        <Link to="/privacypolicy" style={{ fontSize: "smaller" }}> Privacy & polices </Link>
+                                    </label>
                                     <div className="my-4">
                                         <input type="submit" className="form-control signinbutton " id="submitbuttons" value="Sign Up" />
                                     </div>

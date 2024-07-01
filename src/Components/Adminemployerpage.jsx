@@ -92,7 +92,6 @@ const Adminemployerpage = () => {
 
   // Code to deactivate the jobseeker, this will soft delete the 
   const handleDeactivate = (employerId) => {
-    console.log(`Deactivate Employer: ${employerId}`);
     // const deactiveEmployer= axios.put(`http://localhost:8080/employer/delete/${employerId}`)
     const deactiveEmployer= axios.put(`https://www.stint.world/employer/delete/${employerId}`)
     .then((response)=>{ return response.data})
