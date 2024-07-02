@@ -15,7 +15,7 @@ const Jobseekerregform = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [Confirmpassword, setConfirmpassword] = useState('');
+    const [confirmpassword, setConfirmpassword] = useState('');
     const [otp, setOtp] = useState('');
     const [errMessageState, setErrMessageState] = useState(false)
     const [errMessage, setErrMessage] = useState()
@@ -38,10 +38,10 @@ const Jobseekerregform = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // const ack = document.getElementById('checkboxtcpp');
-        const ack= viewpwd.current.checked;
+        const ack = viewpwd.current.checked;
         if (ack) {
             // Implement form submission logic here (e.g., send data to server)
-            if (password === Confirmpassword) {
+            if (password === confirmpassword) {
                 const newApplicant = {
                     applicantName: name,
                     applicantEmail: email,
@@ -132,9 +132,6 @@ const Jobseekerregform = () => {
                 else if (err.message === "Network Error") {
                     setErrMessage(`${err.message} : Request failed`)
                 }
-                else if (err.message === "Request failed with status code 500") {
-                    setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                }
                 else if (err.message === "Request failed with status code 406") {
                     setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
                 }
@@ -189,126 +186,120 @@ const Jobseekerregform = () => {
 
 
     return (
-        <>
-            <>
-                <div className="container signup-form">
-                    <div className="row rounded-3  border-1 border-info my-5 d-flex flex-row align-items-center justify-content-flex-space-around forboxshadow">
-                        <div className="col-md-6 image-section">
-                            <img src={signupimage} alt="Signup Illustration" className="image-fluid" style={{ width: "350px", height: "350px" }} />
-                            {/* <img src={signupimage} alt="Signup Illustration" className="image-fluid"  /> */}
-                        </div>
-                        <div className="col-md-6 form-section mt-5 ">
-                            <h1>WELCOME</h1>
-                            {/* Error message content */}
-                            {errMessageState && <div className="alert alert-danger" role="alert" style={{ display: 'block' }}>
-                                {errMessage}
-                            </div>}
-                            <form onSubmit={handleSubmit} className="empregtext">
-                                <div className="form-group empregtext">
-                                    <label htmlFor="name" className="form-label " >Full Name: </label>
-                                    <input
-                                        type="text"
-                                        className="form-control mb-3"
-                                        id="name"
-                                        placeholder="Tony"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email" className="form-label ">Email ID: </label>
-                                    <input
-                                        type="email"
-                                        className="form-control mb-3"
-                                        id="email"
-                                        placeholder="Example@gmail.com"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                    <button className="btn btn-info btn-sm mb-2" id="sendotpbtn" onClick={sendotp}>Send OTP</button>
-                                </div>
 
-                                <div className="form-group verifyotpsection">
-                                    {/* <label htmlFor="otp" className="form-label">Enter OTP here:</label>  */}
-                                    <input
-                                        type="text"
-                                        className="form-control mb-3 input-sm"
-                                        id="otp"
-                                        placeholder="Enter OTP here"
-                                        value={otp}
-                                        onChange={(e) => setOtp(e.target.value)}
-                                        required
-                                    />
-                                    <button className="btn btn-info btn-sm" onClick={verifyotp}>Submit OTP</button> {/* Changed button text */}
-                                </div>
-
-                                <span className="hideshowinputfield">
-                                    <div className="form-group">
-                                        <label htmlFor="phone" className="form-label ">Contact number: </label>
-                                        <input
-                                            type="tel"
-                                            className="form-control mb-3"
-                                            id="phone"
-                                            placeholder="+919012345678"
-                                            value={phone}
-                                            onChange={(e) => setPhone(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="password" className="form-label ">Password: </label>
-                                        <input
-                                            type="password"
-                                            className="form-control mb-3"
-                                            id="password"
-                                            placeholder="example"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            required
-                                            minLength={8}
-                                            maxLength={16}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="Confirmpassword" className="form-label ">Confirm Password: </label>
-                                        <input
-                                            type="text"
-                                            className="form-control mb-3"
-                                            id="Confirmpassword"
-                                            placeholder="password"
-                                            value={Confirmpassword}
-                                            onChange={(e) => setConfirmpassword(e.target.value)}
-                                            required
-                                            minLength={8}
-                                            maxLength={16}
-                                        />
-                                    </div>
-                                    <label htmlFor="checkboxtcpp" className='d-flex flex-wrap justify-content-start align-items-center' style={{ fontSize: "smaller" }}>
-                                        <input type="checkbox" id='checkboxtcpp' ref={viewpwd} required />  I confirm I have read and agree to the &nbsp;
-                                        <Link to="/termscondition" style={{ fontSize: "smaller" }}> T&C </Link>,&nbsp;
-                                        <Link to="/privacypolicy" style={{ fontSize: "smaller" }}> Privacy & polices </Link>
-                                    </label>
-                                    <div className="my-4">
-                                        <input type="submit" className="form-control signinbutton " id="submitbuttons" value="Sign Up" />
-                                    </div>
-                                </span>
-                            </form>
-
-                            {/* Login redirection link */}
-                            <p className="text-muted mb-5 mt-3">
-                                Already have an account? <Link to="/login">Login Here</Link>
-                            </p>
-
-                        </div>
-
-
-
-                    </div>
+        <div className="container signup-form">
+            <div className="row rounded-3  border-1 border-info my-5 d-flex flex-row align-items-center justify-content-flex-space-around forboxshadow">
+                <div className="col-md-6 image-section">
+                    <img src={signupimage} alt="Signup Illustration" className="image-fluid" style={{ width: "350px", height: "350px" }} />
+                    {/* <img src={signupimage} alt="Signup Illustration" className="image-fluid"  /> */}
                 </div>
-            </>
-        </>
+                <div className="col-md-6 form-section mt-5 ">
+                    <h1>WELCOME</h1>
+                    {/* Error message content */}
+                    {errMessageState && <div className="alert alert-danger" role="alert" style={{ display: 'block' }}>
+                        {errMessage}
+                    </div>}
+                    <form onSubmit={handleSubmit} className="empregtext">
+                        <div className="form-group empregtext">
+                            <label htmlFor="name" className="form-label " >Full Name: </label>
+                            <input
+                                type="text"
+                                className="form-control mb-3"
+                                id="name"
+                                placeholder="Tony"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email" className="form-label ">Email ID: </label>
+                            <input
+                                type="email"
+                                className="form-control mb-3"
+                                id="email"
+                                placeholder="Example@gmail.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            <button className="btn btn-info btn-sm mb-2" id="sendotpbtn" onClick={sendotp}>Send OTP</button>
+                        </div>
+
+                        <div className="form-group verifyotpsection">
+                            {/* <label htmlFor="otp" className="form-label">Enter OTP here:</label>  */}
+                            <input
+                                type="text"
+                                className="form-control mb-3 input-sm"
+                                id="otp"
+                                placeholder="Enter OTP here"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                required
+                            />
+                            <button className="btn btn-info btn-sm" onClick={verifyotp}>Submit OTP</button> {/* Changed button text */}
+                        </div>
+
+                        <span className="hideshowinputfield">
+                            <div className="form-group">
+                                <label htmlFor="phone" className="form-label ">Contact number: </label>
+                                <input
+                                    type="tel"
+                                    className="form-control mb-3"
+                                    id="phone"
+                                    placeholder="+919012345678"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password" className="form-label ">Password: </label>
+                                <input
+                                    type="password"
+                                    className="form-control mb-3"
+                                    id="password"
+                                    placeholder="example"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    minLength={8}
+                                    maxLength={16}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="confirmpassword" className="form-label ">Confirm Password: </label>
+                                <input
+                                    type="text"
+                                    className="form-control mb-3"
+                                    id="confirmpassword"
+                                    placeholder="password"
+                                    value={confirmpassword}
+                                    onChange={(e) => setConfirmpassword(e.target.value)}
+                                    required
+                                    minLength={8}
+                                    maxLength={16}
+                                />
+                            </div>
+                            <label htmlFor="checkboxtcpp" className='d-flex flex-wrap justify-content-start align-items-center' style={{ fontSize: "smaller" }}>
+                                <input type="checkbox" id='checkboxtcpp' ref={viewpwd} required />  I confirm I have read and agree to the &nbsp;
+                                <Link to="/termscondition" style={{ fontSize: "smaller" }}> T&C </Link>,&nbsp;
+                                <Link to="/privacypolicy" style={{ fontSize: "smaller" }}> Privacy & polices </Link>
+                            </label>
+                            <div className="my-4">
+                                <input type="submit" className="form-control signinbutton " id="submitbuttons" value="Sign Up" />
+                            </div>
+                        </span>
+                    </form>
+
+                    {/* Login redirection link */}
+                    <p className="text-muted mb-5 mt-3">
+                        Already have an account? <Link to="/login">Login Here</Link>
+                    </p>
+                </div>
+            </div>
+        </div>
+
     );
 }
 

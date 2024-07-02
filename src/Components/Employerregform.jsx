@@ -1,5 +1,5 @@
 import "../Stylesh/Employerregform.css";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import signupimage from "../images/Sign up-amico.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -12,13 +12,13 @@ const Employerregform = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [Confirmpassword, setConfirmpassword] = useState('');
+    const [confirmpassword, setConfirmpassword] = useState('');
     const [organizationname, setOrganizationname] = useState('');
     const [location, setLocation] = useState('');
     const [otp, setOtp] = useState('');
     const [errMessageState, setErrMessageState] = useState(false)
     const [errMessage, setErrMessage] = useState()
-
+    const viewpwd = useRef(false)
 
 
     useEffect(() => {
@@ -30,66 +30,70 @@ const Employerregform = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const ack = viewpwd.current.checked;
         let newEmployer;
-        if (password === Confirmpassword) {
-            newEmployer = {
-                employerName: name,
-                employerEmail: email,
-                employerPhNo: phone,
-                employerPassword: password,
-                organisation:organizationname,
-                orgLocation:location
-
-            }
-            // const newEmp = axios.post("http://localhost:8080/employer/add", newEmployer)
-            const newEmp = axios.post("https://www.stint.world/employer/add", newEmployer)
-                .then((response) => {
-                    return response.data
-                })
-                .then((data) => {
-                    if (data.statusCode === 201) {
-                        alert(data.message)
-                        history.push("/login")
+        if(ack)
+            {
+                if (password === confirmpassword) {
+                    newEmployer = {
+                        employerName: name,
+                        employerEmail: email,
+                        employerPhNo: phone,
+                        employerPassword: password,
+                        organisation:organizationname,
+                        orgLocation:location
+        
                     }
-                })
-                .catch((err) => {
+                    // const newEmp = axios.post("http://localhost:8080/employer/add", newEmployer)
+                    const newEmp = axios.post("https://www.stint.world/employer/add", newEmployer)
+                        .then((response) => {
+                            return response.data
+                        })
+                        .then((data) => {
+                            if (data.statusCode === 201) {
+                                alert(data.message)
+                                history.push("/login")
+                            }
+                        })
+                        .catch((err) => {
+                            setErrMessageState(true)
+                            if (err.message === "equest failed with status code 500") {
+                                setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
+                            }
+                            else if (err.message === "Network Error") {
+                                setErrMessage(`${err.message} : Request failed`)
+                            }
+                            else if (err.message === "Request failed with status code 406") {
+                                setErrMessage(`${err.response.data.statusCode} ${err.response.data.rootCause}`)
+                            }
+                            else if (err.message === "Request failed with status code 404" || err.code === "ERR_BAD_REQUEST") {
+                                setErrMessage(`${err.response.data.message}`)
+                            }
+                            else {
+                                setErrMessage("Somthing went wrong please check")
+                            }
+                        })
+                }
+                else {
                     setErrMessageState(true)
-                    if (err.message === "equest failed with status code 500") {
-                        setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                    }
-                    else if (err.message === "Network Error") {
-                        setErrMessage(`${err.message} : Request failed`)
-                    }
-                    else if (err.message === "equest failed with status code 500") {
-                        setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                    }
-                    else if (err.message === "Request failed with status code 406") {
-                        setErrMessage(`${err.response.data.statusCode} ${err.response.data.rootCause}`)
-                    }
-                    else if (err.message === "Request failed with status code 404" || err.code === "ERR_BAD_REQUEST") {
-                        setErrMessage(`${err.response.data.message}`)
-                    }
-                    else {
-                        setErrMessage("Somthing went wrong please check")
-                    }
-                })
-        }
-        else {
-            setErrMessageState(true)
-            setErrMessage("Pasowrd miss Match")
-        }
-
-        // Clear form fields after submission
-        setName('');
-        setEmail('');
-        setPhone('');
-        setPassword('');
-        setConfirmpassword('');
-        setOrganizationname('');
-        setLocation('');
-        setPassword('')
-        setConfirmpassword('')
-
+                    setErrMessage("Pasowrd miss Match")
+                }
+            }
+            else
+            {
+                setErrMessage("Kindly read and accept our T&C, Privacy & polices")
+                setErrMessageState(true);
+            }
+         // Clear form fields after submission
+         setName('');
+         setEmail('');
+         setPhone('');
+         setPassword('');
+         setConfirmpassword('');
+         setOrganizationname('');
+         setLocation('');
+         setPassword('')
+         setConfirmpassword('')
     };
 
     function resendotp() {
@@ -124,9 +128,6 @@ const Employerregform = () => {
                 }
                 else if (err.message === "Network Error") {
                     setErrMessage(`${err.message} : Request failed`)
-                }
-                else if (err.message === "Request failed with status code 500") {
-                    setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
                 }
                 else if (err.message === "Request failed with status code 406") {
                     setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
@@ -164,9 +165,6 @@ const Employerregform = () => {
                 else if (err.message === "Network Error") {
                     setErrMessage(`${err.message} : Request failed`)
                 }
-                else if (err.message === "Request failed with status code 500") {
-                    setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
-                }
                 else if (err.message === "Request failed with status code 406") {
                     setErrMessage(`${err.response.data.status} ${err.response.data.error}`)
                 }
@@ -183,7 +181,6 @@ const Employerregform = () => {
 
 
     return (
-        <>
             <div className="container signup-form">
                 <div className="row rounded-3  border-1 border-info my-5 d-flex flex-row align-items-center justify-content-flex-space-around forboxshadow">
                     <div className="col-md-6 image-section">
@@ -295,17 +292,22 @@ const Employerregform = () => {
                                 <div className="form-group">
                                     <label htmlFor="Confirmpassword" className="form-label ">Confirm Password: </label>
                                     <input
-                                        type="Confirmpassword"
+                                        type="confirmpassword"
                                         className="form-control mb-3"
-                                        id="Confirmpassword"
+                                        id="confirmpassword"
                                         placeholder="password"
-                                        value={Confirmpassword}
+                                        value={confirmpassword}
                                         onChange={(e) => setConfirmpassword(e.target.value)}
                                         required
                                         minLength={8}
                                         maxLength={16}
                                     />
                                 </div>
+                                <label htmlFor="checkboxtcpp" className='d-flex flex-wrap justify-content-start align-items-center' style={{ fontSize: "smaller" }}>
+                                        <input type="checkbox" id='checkboxtcpp' ref={viewpwd} required />  I confirm I have read and agree to the &nbsp;
+                                        <Link to="/termscondition" style={{ fontSize: "smaller" }}> T&C </Link>,&nbsp;
+                                        <Link to="/privacypolicy" style={{ fontSize: "smaller" }}> Privacy & polices </Link>
+                                    </label>
                                 <div className="my-4">
                                     <input type="submit" className="form-control signinbutton " id="submitbuttons" value="Sign Up" />
                                 </div>
@@ -323,7 +325,6 @@ const Employerregform = () => {
 
                 </div>
             </div>
-        </>
     );
 }
 

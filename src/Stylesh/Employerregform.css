@@ -9,5 +9,5 @@
 }
 .hideshowinputfield
 {
-    display: block !important;
+    display: none;
 }
