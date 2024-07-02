@@ -50,7 +50,6 @@ const Employerregform = () => {
                             return response.data
                         })
                         .then((data) => {
-                            console.log(data);
                             if (data.statusCode === 201) {
                                 alert(data.message)
                                 history.push("/login")

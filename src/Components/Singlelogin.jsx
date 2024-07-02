@@ -39,14 +39,12 @@ const Singlelogin = ({login}) => {
             }
             else
             {
-                // path="https://www.stint.world/employer/login"
-                path="http://localhost:8080/employer/login"
+                path="https://www.stint.world/employer/login"
             }
         const user = axios.post(path,{emailId:Email, password:Password})
         .then((response)=>{
             return response.data;
         }).then((data)=>{
-            console.log(data);
             if(data.statusCode === 200 || data.statusCode === 201)
             {
                if(AccountType==="jobseeker")
