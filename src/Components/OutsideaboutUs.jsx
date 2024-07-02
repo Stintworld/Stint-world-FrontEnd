@@ -65,7 +65,7 @@ const OutsideaboutUs = () => {
 
                     <h5 className="mt-5">Our Mission</h5>
                     <hr />
-                    At Stint.world, we're passionate about empowering engineering students to launch stellar careers and enabling companies to build strong, future-proof engineering teams. We believe in fostering a platform that fosters meaningful connections and propels the engineering industry forward.
+                    At Stint.world, we're passionate about empowering engineering students to launch stellar careers and enabling companies to build strong, future-proof engineering teams. We believe in fostering a platform that fostersing meaningful connections and propels the engineering industry forward.
 
                     <h6 className="mt-5">Join us on Stint.world and take your engineering career to the next level!</h6>
                 </div>
