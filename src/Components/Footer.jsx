@@ -42,12 +42,15 @@ const Footer = () => {
               <li>
                 <Link to="/privacypolicy" style={{color: "white", textDecoration:"none"}}>Privacy Policy</Link>
               </li>
+              <li>
+                <Link to="/refundpolicy" style={{color: "white", textDecoration:"none"}}>Refund Policy</Link>
+              </li>
             </ul>
           </Col>
           {/* <Col xs={8} md={4}> */}
           <Col className="col-auto">
             <h5 className="text-uppercase mb-2 mt-3">Newsletter</h5>
-            <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
+            <p>Please subscribe, to receive the blogs related jobs and careers</p>
             <form className='d-flex flex-row align-items-center justify-content-flex-space-around'>
               <div className="form-group">
                 <input

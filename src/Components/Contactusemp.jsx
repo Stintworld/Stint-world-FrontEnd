@@ -89,9 +89,9 @@ const Contactusemp = ({logout}) => {
                 <div class="container">
                     <div class="heading text-center">
                         <h2>Contact <span> Us </span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> */}
                     </div>
-                    <div class="row d-flex align-items-center" style={{ justifyContent: "space-around" }}>
+                    <div class="row d-flex align-items-center mt-3" style={{ justifyContent: "space-around" }}>
                         <div class="col-md-5 col-lg-4">
                             <div class="content d-flex flex-column justify-content-center align-items-center" >
                                 <div class="info">

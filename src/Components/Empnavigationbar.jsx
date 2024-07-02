@@ -26,7 +26,8 @@ const Empnavigationbar = ({logout}) => {
                                 <NavDropdown.Item ><Link to="/employerprofileview" style={{color:"#6f1f95", textDecoration:"none"}}>Service 4</Link> </NavDropdown.Item>
                                 {/* Add more service links as needed */}
                                 </NavDropdown>
-                            <Nav.Link  style={{color: "white"}} id="linkshover"><Link to="/empaboutus" style={{color:"white", textDecoration:"none"}}>About Us</Link></Nav.Link>
+                            {/* <Nav.Link  style={{color: "white"}} id="linkshover"><Link to="/empaboutus" style={{color:"white", textDecoration:"none"}}>About Us</Link></Nav.Link> */}
+                            <Nav.Link  style={{color: "white"}} id="linkshover"><Link to="/allaboutus" style={{color:"white", textDecoration:"none"}}>About Us</Link></Nav.Link>
                             <Nav.Link style={{color: "white"}} id="linkshover"><Link to="/empblogs" style={{color:"white", textDecoration:"none"}}>Blogs</Link></Nav.Link>
                             <Nav.Link style={{color: "white"}} id="linkshover"><Link to="/empcontactus" style={{color:"white", textDecoration:"none"}}>Contact Us</Link></Nav.Link>
 

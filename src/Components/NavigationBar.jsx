@@ -28,7 +28,8 @@ const NavigationBar = ({logout}) => {
                                 <span><NavDropdown.Item ><Link to="/alljobs" style={{color:"#6f1f95", textDecoration:"none"}}>Service 4</Link> </NavDropdown.Item></span>
                                 {/* Add more service links as needed */}
                                 </NavDropdown>
-                                <span><Nav.Link  style={{color: "white"}} id="linkshover"><Link to="/aboutus" style={{color:"white", textDecoration:"none"}}>About Us</Link></Nav.Link></span>
+                                {/* <span><Nav.Link  style={{color: "white"}} id="linkshover"><Link to="/aboutus" style={{color:"white", textDecoration:"none"}}>About Us</Link></Nav.Link></span> */}
+                                <span><Nav.Link  style={{color: "white"}} id="linkshover"><Link to="/allaboutus" style={{color:"white", textDecoration:"none"}}>About Us</Link></Nav.Link></span>
                                 <span> <Nav.Link style={{color: "white"}} id="linkshover"><Link to="/appblogs" style={{color:"white", textDecoration:"none"}}>Blogs</Link></Nav.Link></span>
                                 <span><Nav.Link style={{color: "white"}} id="linkshover"><Link to="/contactus" style={{color:"white", textDecoration:"none"}}>Contact</Link></Nav.Link></span>
 
