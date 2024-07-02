@@ -162,10 +162,8 @@ const Singlelogin = ({login}) => {
                         <div className="d-flex flex-column justify-content-center h-100 mb-4  text-white textdiscription rounded-5">
 
                             <div className="px-3 py-4 p-md-5 mx-md-4 rounded-5">
-                                <h4 className="mb-4">We are more than just a company</h4>
-                                <p className="text-muted dispcolor">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                <h4 className="mb-4">Empowering Careers, Building Futures</h4>
+                                <p className="text-muted dispcolor">"At STINT.WORLD, we are more than just a company. We are a community dedicated to empowering individuals to reach their full potential. Our mission is to provide not just job opportunities but also the support, resources, and inspiration needed for career success. Join us and become part of a network that values growth, learning, and the power of community."
                                 </p>
                             </div>
 
